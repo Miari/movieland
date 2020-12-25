@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.boroday.movieland.web.controller"/>
+    <context:component-scan base-package="com.boroday.movieland"/>
 
     <mvc:annotation-driven/>
 
@@ -21,12 +21,12 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
-    <bean id="movieDao" class="com.boroday.movieland.dao.jdbc.JdbcMovieDao">
-        <property name="dataSource" ref="dataSource"/>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="dataSource"/>
     </bean>
 
-    <bean id="movieService" class="com.boroday.movieland.service.impl.DefaultMovieService">
-        <property name="movieDao" ref="movieDao"/>
+    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="dataSource"/>
     </bean>
 
     <context:property-placeholder location="classpath:application.properties" />

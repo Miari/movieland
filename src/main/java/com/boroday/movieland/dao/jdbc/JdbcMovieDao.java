@@ -3,40 +3,26 @@ package com.boroday.movieland.dao.jdbc;
 import com.boroday.movieland.dao.MovieDao;
 import com.boroday.movieland.dao.jdbc.mapper.MovieRowMapper;
 import com.boroday.movieland.entity.Movie;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
+@Service
+@RequiredArgsConstructor
 public class JdbcMovieDao implements MovieDao {
 
     private static final String GET_ALL_MOVIES = "select id, nameRu, nameEn, yearOfProduction, description, rating, price from movies";
     private static final MovieRowMapper MOVIE_ROW_MAPPER = new MovieRowMapper();
 
-    private DataSource dataSource;
-
-    public JdbcMovieDao(DataSource dataSource){
-        this.dataSource = dataSource;
-    }
+    private final JdbcTemplate jdbcTemplate;
 
     @Override
     public List<Movie> getAll() {
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_MOVIES);
-            ResultSet resultSet = preparedStatement.executeQuery()){
-
-            List<Movie> listOfMovies = new ArrayList<>();
-            while (resultSet.next()){
-                Movie movie = MOVIE_ROW_MAPPER.mapRow(resultSet);
-                listOfMovies.add(movie);
-            }
-            return listOfMovies;
-        } catch (SQLException e) {
-            throw new RuntimeException("Impossible to get all movies", e);
-        }
+        log.info("Getting all movies from DB");
+        return jdbcTemplate.query(GET_ALL_MOVIES, MOVIE_ROW_MAPPER);
     }
 }
