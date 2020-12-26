@@ -18,6 +18,7 @@ public class MovieRowMapper implements RowMapper<Movie> {
         movie.setDescription(resultSet.getString("description"));
         movie.setRating(resultSet.getDouble("rating"));
         movie.setPrice(resultSet.getDouble("price"));
+        movie.setPicturePath(resultSet.getString("picturePath"));
         return movie;
     }
 }

@@ -23,13 +23,8 @@ CREATE TABLE movies (
     yearOfProduction integer NOT NULL CONSTRAINT valid_year CHECK (yearOfProduction > 1894),
     description text NOT NULL,
     rating numeric NOT NULL,
-    price numeric NOT NULL
-);
-
-CREATE TABLE posters (
-  	id serial PRIMARY KEY,
-    id_movie integer NOT NULL REFERENCES movies ON DELETE RESTRICT,
-    link VARCHAR(250) NOT NULL
+    price numeric NOT NULL,
+    picturePath VARCHAR(250) NOT NULL
 );
 
 CREATE TABLE country_movie (

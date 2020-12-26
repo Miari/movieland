@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JdbcMovieDao implements MovieDao {
 
-    private static final String GET_ALL_MOVIES = "select id, nameRu, nameEn, yearOfProduction, description, rating, price from movies";
+    private static final String GET_ALL_MOVIES = "select id, nameRu, nameEn, yearOfProduction, description, rating, price, picturePath from movies";
     private static final MovieRowMapper MOVIE_ROW_MAPPER = new MovieRowMapper();
 
     private final JdbcTemplate jdbcTemplate;

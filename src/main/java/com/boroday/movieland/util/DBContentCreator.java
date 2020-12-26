@@ -14,12 +14,11 @@ public class DBContentCreator {
     private static final String pathToGenresFile = "src/main/resources/dbContent/genres.txt";
     private static final String pathToGenresDbMigrationFile = "src/main/resources/db/migration/V1_3__fill_genres.sql";
     private static final String pathToPostersFile = "src/main/resources/dbContent/posters.txt";
-    private static final String pathToPostersDbMigrationFile = "src/main/resources/db/migration/V1_4__fill_posters.sql";
-    private static final String pathToCountriesDbMigrationFile = "src/main/resources/db/migration/V1_5__fill_countries.sql";
-    private static final String pathToCountryMovieDbMigrationFile = "src/main/resources/db/migration/V1_6__fill_country_movie.sql";
-    private static final String pathToGenreMovieDbMigrationFile = "src/main/resources/db/migration/V1_7__fill_genre_movie.sql";
+    private static final String pathToCountriesDbMigrationFile = "src/main/resources/db/migration/V1_4__fill_countries.sql";
+    private static final String pathToCountryMovieDbMigrationFile = "src/main/resources/db/migration/V1_5__fill_country_movie.sql";
+    private static final String pathToGenreMovieDbMigrationFile = "src/main/resources/db/migration/V1_6__fill_genre_movie.sql";
     private static final String pathToReviewsFile = "src/main/resources/dbContent/reviews.txt";
-    private static final String pathToReviewsDbMigrationFile = "src/main/resources/db/migration/V1_8__fill_reviews.sql";
+    private static final String pathToReviewsDbMigrationFile = "src/main/resources/db/migration/V1_7__fill_reviews.sql";
 
     ArrayList<String> fullName = new ArrayList<>();
     ArrayList<String> movieNameRu = new ArrayList<>();
@@ -83,6 +82,12 @@ public class DBContentCreator {
 
         ArrayList<String> nameOfGenre = new ArrayList<>();
         fillGenres(nameOfGenre);
+
+        //read posters
+        ArrayList<String> movieNameForPoster = new ArrayList<>();
+        ArrayList<String> link = new ArrayList<>();
+        readPosters(movieNameForPoster, link);
+        //
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(pathToMoviesFile))) {
             String line;
@@ -150,7 +155,7 @@ public class DBContentCreator {
         try (BufferedWriter bufferedWritter = new BufferedWriter(new FileWriter(pathToMoviesDbMigrationFile))) {
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < movieNameRu.size(); i++) {
-                stringBuilder.append("INSERT INTO movies (nameRu, nameEn, yearOfProduction, description, rating, price) VALUES ('");
+                stringBuilder.append("INSERT INTO movies (nameRu, nameEn, yearOfProduction, description, rating, price, picturePath) VALUES ('");
                 stringBuilder.append(movieNameRu.get(i));
                 stringBuilder.append("', '");
                 stringBuilder.append(movieNameEn.get(i));
@@ -162,7 +167,15 @@ public class DBContentCreator {
                 stringBuilder.append(rating.get(i));
                 stringBuilder.append(", ");
                 stringBuilder.append(price.get(i));
-                stringBuilder.append("); \n");
+                stringBuilder.append(", '");
+                int indexOfLink = movieNameForPoster.indexOf(movieNameRu.get(i));
+                if (indexOfLink == -1) {
+                    log.error("Not possible to find picturePath for the film: " + movieNameRu.get(i));
+                    throw new RuntimeException("PicturePath file does not contain a link for film: " + movieNameRu.get(i));
+                } else {
+                    stringBuilder.append(link.get(indexOfLink));
+                    stringBuilder.append("'); \n");
+                }
             }
             stringBuilder.append("COMMIT;");
             bufferedWritter.write(stringBuilder.toString());
@@ -171,11 +184,8 @@ public class DBContentCreator {
             throw new RuntimeException("Not possible to write file", e);
         }
 
-        //read posters
-        ArrayList<String> name = new ArrayList<>();
-        ArrayList<String> link = new ArrayList<>();
-        readPosters(name, link);
 
+/*
         //write posters
         try (BufferedWriter bufferedWritter = new BufferedWriter(new FileWriter(pathToPostersDbMigrationFile))) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -193,7 +203,7 @@ public class DBContentCreator {
             log.error("Not possible to write into file " + pathToPostersDbMigrationFile);
             throw new RuntimeException("Not possible to write file", e);
         }
-
+*/
         // write countries
         try (BufferedWriter bufferedWritter = new BufferedWriter(new FileWriter(pathToCountriesDbMigrationFile))) {
             StringBuilder stringBuilder = new StringBuilder();

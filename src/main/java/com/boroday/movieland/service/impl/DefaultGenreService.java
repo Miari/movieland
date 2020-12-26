@@ -1,7 +1,6 @@
 package com.boroday.movieland.service.impl;
 
 import com.boroday.movieland.dao.GenreDao;
-import com.boroday.movieland.dao.MovieDao;
 import com.boroday.movieland.entity.Genre;
 import com.boroday.movieland.service.GenreService;
 import lombok.RequiredArgsConstructor;
