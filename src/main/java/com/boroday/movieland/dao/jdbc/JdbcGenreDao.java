@@ -19,10 +19,6 @@ public class JdbcGenreDao implements GenreDao {
 
     private final JdbcTemplate jdbcTemplate;
 
-   /* public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }*/
-
     @Override
     public List<Genre> getAll() {
         log.info("Getting all genres from DB");

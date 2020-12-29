@@ -8,9 +8,9 @@ public class TestDatabaseContentCreator {
 
     @Test
     public void testFill(){
-        contentCreator = new DBContentCreator();
+        /*contentCreator = new DBContentCreator();
         contentCreator.fillUsers();
         contentCreator.fillMovies();
-        contentCreator.fillReviews();
+        contentCreator.fillReviews();*/
     }
 }
