@@ -14,7 +14,7 @@ public class DefaultMovieService implements MovieService {
     private final MovieDao movieDao;
 
     @Override
-    public List<Movie> getAll() {
-        return movieDao.getAll();
+    public List<Movie> getAll(String rating, String price) {
+        return movieDao.getAll(rating, price);
     }
 }
