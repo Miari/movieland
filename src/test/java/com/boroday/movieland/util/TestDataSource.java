@@ -18,7 +18,7 @@ public class TestDataSource implements DataSource {
         jdbcDataSource = new JdbcDataSource();
         jdbcDataSource.setURL("jdbc:h2:mem:movieland;MODE=PostgreSQL;DB_CLOSE_DELAY=-1");
         jdbcDataSource.setUser("postgres");
-        jdbcDataSource.setPassword("root");
+        jdbcDataSource.setPassword("12345");
         flyway = Flyway.configure().dataSource(jdbcDataSource).load();
     }
 
@@ -38,7 +38,7 @@ public class TestDataSource implements DataSource {
 
     @Override
     public Connection getConnection(String username, String password) throws SQLException {
-        return null;
+        return jdbcDataSource.getConnection(username, password);
     }
 
     @Override
