@@ -16,10 +16,12 @@ public class TestDataSource implements DataSource {
 
     public TestDataSource() {
         jdbcDataSource = new JdbcDataSource();
-        jdbcDataSource.setURL("jdbc:h2:mem:movieland;MODE=PostgreSQL;DB_CLOSE_DELAY=-1");
+        jdbcDataSource.setURL("jdbc:h2:mem:movieland;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=FALSE;CASE_INSENSITIVE_IDENTIFIERS=TRUE");
         jdbcDataSource.setUser("postgres");
-        jdbcDataSource.setPassword("12345");
+        jdbcDataSource.setPassword("root");
+
         flyway = Flyway.configure().dataSource(jdbcDataSource).load();
+
     }
 
     public JdbcDataSource init() {
