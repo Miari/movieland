@@ -1,5 +1,6 @@
 package com.boroday.movieland.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.flywaydb.core.Flyway;
 import org.h2.jdbcx.JdbcDataSource;
 
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
 
+@Slf4j
 public class TestDataSource implements DataSource {
     JdbcDataSource jdbcDataSource;
     Flyway flyway;
@@ -25,7 +27,10 @@ public class TestDataSource implements DataSource {
     }
 
     public JdbcDataSource init() {
+        log.info("DB migration started");
         flyway.migrate();
+        log.info("DB migration finished. jdbcURL: " + jdbcDataSource.getURL());
+        jdbcDataSource.getURL();
         return jdbcDataSource;
     }
 
