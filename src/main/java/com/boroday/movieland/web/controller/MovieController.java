@@ -24,7 +24,7 @@ public class MovieController {
         return movieList;
     }
 
-    @GetMapping("/movie/random")
+    @GetMapping("/movies/random")
     public List<Movie> RandomMovies() throws IOException {
         log.info("Page for getting all movies is requested");
         List<Movie> movieList = movieService.getRandom();
