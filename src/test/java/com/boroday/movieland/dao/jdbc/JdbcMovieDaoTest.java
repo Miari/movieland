@@ -4,9 +4,7 @@ import com.boroday.movieland.dao.MovieDao;
 import com.boroday.movieland.entity.Movie;
 import com.boroday.movieland.util.TestDataSource;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 
@@ -21,12 +19,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @Slf4j
 public class JdbcMovieDaoTest {
 
-    private TestDataSource testDataSource = new TestDataSource();
+    private static TestDataSource testDataSource = new TestDataSource();
     JdbcTemplate jdbcTemplate = new JdbcTemplate(testDataSource);
-    List<Movie> expectedMovies;
+    private static List<Movie> expectedMovies;
 
-    @BeforeEach
-    public void createMovies() {
+    @BeforeAll
+    public static void createMovies() {
+        log.info("Testing for getting movies is started");
         testDataSource.init();
         Movie firstMovie = new Movie();
         firstMovie.setId(2);
@@ -53,8 +52,8 @@ public class JdbcMovieDaoTest {
         expectedMovies.add(secondMovie);
     }
 
-    @AfterEach
-    public void removeMovies() {
+    @AfterAll
+    public static void removeMovies() {
         testDataSource.cleanup();
     }
 

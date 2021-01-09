@@ -4,9 +4,7 @@ import com.boroday.movieland.dao.GenreDao;
 import com.boroday.movieland.entity.Genre;
 import com.boroday.movieland.util.TestDataSource;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.LinkedList;
@@ -17,12 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 public class JdbcGenreDaoTest {
-    private TestDataSource testDataSource = new TestDataSource();
+    private static TestDataSource testDataSource = new TestDataSource();
     JdbcTemplate jdbcTemplate = new JdbcTemplate(testDataSource);
-    List<Genre> expectedGenres;
+    private static List<Genre> expectedGenres;
 
-    @BeforeEach
-    public void createGenres() {
+    @BeforeAll
+    public static void createGenres() {
+        log.info("Testing for getting genres is started");
         testDataSource.init();
         Genre firstGenre = new Genre();
         firstGenre.setId(8);
@@ -37,8 +36,8 @@ public class JdbcGenreDaoTest {
         expectedGenres.add(secondGenre);
     }
 
-    @AfterEach
-    public void removeMovies() {
+    @AfterAll
+    public static void removeMovies() {
         testDataSource.cleanup();
     }
 
