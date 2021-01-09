@@ -25,7 +25,7 @@ public class JdbcMovieDaoTest {
 
     @BeforeAll
     public static void createMovies() {
-        log.info("Testing for getting movies is started");
+        log.info("BeforeAll for getting movies is started");
         testDataSource.init();
         Movie firstMovie = new Movie();
         firstMovie.setId(2);
@@ -54,11 +54,14 @@ public class JdbcMovieDaoTest {
 
     @AfterAll
     public static void removeMovies() {
+        log.info("AfterAll for getting movies is started");
         testDataSource.cleanup();
     }
 
     @Test
     public void testGetAll() {
+        log.info("GetAll test is started");
+
         //prepare
         MovieDao movieDao = new JdbcMovieDao(jdbcTemplate);
 
@@ -75,6 +78,7 @@ public class JdbcMovieDaoTest {
 
     @Test
     public void testGetAllSortingByRating() {
+        log.info("GetAll order by rating test is started");
         //prepare
         MovieDao movieDao = new JdbcMovieDao(jdbcTemplate);
 
@@ -90,6 +94,7 @@ public class JdbcMovieDaoTest {
 
     @Test
     public void testGetAllSortingByPriceAsc() {
+        log.info("GetAll sorting by price asc test is started");
         //prepare
         MovieDao movieDao = new JdbcMovieDao(jdbcTemplate);
 
@@ -104,6 +109,7 @@ public class JdbcMovieDaoTest {
 
     @Test
     public void testGetAllSortingByPriceDesc() {
+        log.info("GetAll sorting by price desc test is started");
         //prepare
         MovieDao movieDao = new JdbcMovieDao(jdbcTemplate);
 
