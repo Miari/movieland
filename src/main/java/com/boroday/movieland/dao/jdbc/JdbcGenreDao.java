@@ -5,6 +5,7 @@ import com.boroday.movieland.dao.jdbc.mapper.GenreRowMapper;
 import com.boroday.movieland.entity.Genre;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class JdbcGenreDao implements GenreDao {
     private final JdbcTemplate jdbcTemplate;
 
     @Override
+    @Cacheable(cacheNames = "genres")
     public List<Genre> getAll() {
         log.info("Getting all genres from DB");
         return jdbcTemplate.query(GET_ALL_GENRES, GENRE_ROW_MAPPER);
