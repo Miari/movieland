@@ -16,7 +16,7 @@ public class GenreController {
     @Autowired
     private GenreService genreService;
 
-    @GetMapping(path = "/genres")
+    @GetMapping("/genres")
     public List<Genre> listOfGenres () {
         log.info("Page for getting all genres is requested");
         List<Genre> genreList = genreService.getAll();

@@ -21,7 +21,7 @@ public class JdbcGenreDao implements GenreDao {
     private final JdbcTemplate jdbcTemplate;
 
     @Override
-    @Cacheable(cacheNames = "genres")
+    @Cacheable("genres")
     public List<Genre> getAll() {
         log.info("Getting all genres from DB");
         return jdbcTemplate.query(GET_ALL_GENRES, GENRE_ROW_MAPPER);
