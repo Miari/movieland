@@ -80,7 +80,6 @@
     </build>
 
     <dependencies>
-
         <!-- jetty -->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>

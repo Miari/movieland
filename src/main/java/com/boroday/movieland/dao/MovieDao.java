@@ -7,4 +7,6 @@ import java.util.List;
 public interface MovieDao {
 
     List<Movie> getAll(String rating, String price);
+
+    List<Movie> getRandom();
 }
