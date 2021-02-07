@@ -26,7 +26,7 @@ public class JdbcMovieDaoTest {
 
     @BeforeAll
     public static void createMovies() {
-        log.info("BeforeAll for getting movies is started");
+        /*log.info("BeforeAll for getting movies is started");
         testDataSource.init();
         Movie firstMovie = new Movie();
         firstMovie.setId(2);
@@ -50,13 +50,13 @@ public class JdbcMovieDaoTest {
 
         expectedMovies = new LinkedList<>();
         expectedMovies.add(firstMovie);
-        expectedMovies.add(secondMovie);
+        expectedMovies.add(secondMovie);*/
     }
 
     @AfterAll
     public static void removeMovies() {
-        log.info("AfterAll for getting movies is started");
-        testDataSource.cleanup();
+        /*log.info("AfterAll for getting movies is started");
+        testDataSource.cleanup();*/
     }
 
     @Test
