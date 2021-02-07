@@ -18,9 +18,10 @@ public class MovieController {
     private MovieService movieService;
 
     @GetMapping("/movies")
-    public List<Movie> allMovies() throws IOException {
+    public List<Movie> allMovies(@RequestParam(value = "rating", required = false) String rating,
+                                 @RequestParam(value = "price", required = false) String price) throws IOException {
         log.info("Page for getting all movies is requested");
-        List<Movie> movieList = movieService.getAll();
+        List<Movie> movieList = movieService.getAll(rating, price);
         return movieList;
     }
 
