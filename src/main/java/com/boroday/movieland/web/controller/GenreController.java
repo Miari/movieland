@@ -17,9 +17,15 @@ public class GenreController {
     private GenreService genreService;
 
     @GetMapping("/genres")
-    public List<Genre> listOfGenres () {
+    public List<Genre> listOfGenres() {
         log.info("Page for getting all genres is requested");
         List<Genre> genreList = genreService.getAll();
         return genreList;
+    }
+
+    @GetMapping("/genres/change")
+    public void changeGenre() {
+        log.info("Change genre request");
+        genreService.changeTheFirst();
     }
 }
