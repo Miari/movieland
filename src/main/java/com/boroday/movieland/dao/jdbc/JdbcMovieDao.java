@@ -19,6 +19,8 @@ public class JdbcMovieDao implements MovieDao {
     private static final String GET_ALL_MOVIES_RATING_DESC = "select id, nameRu, nameEn, yearOfProduction, description, rating, price, picturePath from movies order by rating desc";
     private static final String GET_ALL_MOVIES_PRICE_ASC = "select id, nameRu, nameEn, yearOfProduction, description, rating, price, picturePath from movies order by price asc";
     private static final String GET_ALL_MOVIES_PRICE_DESC = "select id, nameRu, nameEn, yearOfProduction, description, rating, price, picturePath from movies order by price desc";
+    private static final String GET_3_RANDOM_MOVIES = "select id, nameRu, nameEn, yearOfProduction, description, rating, price, picturePath from movies order by random() limit 3";
+
     private static final MovieRowMapper MOVIE_ROW_MAPPER = new MovieRowMapper();
 
     private final JdbcTemplate jdbcTemplate;
@@ -38,5 +40,11 @@ public class JdbcMovieDao implements MovieDao {
             log.info("Incorrect parameter(s) for movies' order. Only one sorting parameter is allowed. Provided rating order value: " + rating + ", provided price order value: " + price);
             throw new RuntimeException("Incorrect parameter(s) for movies' order. Only one sorting parameter is allowed. Provided value was: " + rating + ", provided price order value: " + price);
         }
+    }
+
+    @Override
+    public List<Movie> getRandom() {
+        log.info("Getting 3 random movies from DB");
+        return jdbcTemplate.query(GET_3_RANDOM_MOVIES, MOVIE_ROW_MAPPER);
     }
 }

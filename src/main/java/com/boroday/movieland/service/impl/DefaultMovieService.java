@@ -17,4 +17,9 @@ public class DefaultMovieService implements MovieService {
     public List<Movie> getAll(String rating, String price) {
         return movieDao.getAll(rating, price);
     }
+
+    @Override
+    public  List<Movie> getRandom(){
+        return movieDao.getRandom();
+    }
 }

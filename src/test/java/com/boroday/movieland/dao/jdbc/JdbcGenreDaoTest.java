@@ -23,6 +23,7 @@ public class JdbcGenreDaoTest {
     @BeforeAll
     public static void createGenres() {
         /*log.info("Testing for getting genres is started"); todo
+
         testDataSource.init();
         Genre firstGenre = new Genre();
         firstGenre.setId(8);
