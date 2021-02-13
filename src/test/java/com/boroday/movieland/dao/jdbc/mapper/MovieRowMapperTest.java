@@ -19,12 +19,11 @@ public class MovieRowMapperTest {
         when(mockResultSet.getLong("id")).thenReturn((long) 1);
         when(mockResultSet.getString("nameRu")).thenReturn("Название фильма");
         when(mockResultSet.getString("nameEn")).thenReturn("Name for the movie");
-        when(mockResultSet.getInt("yearOfProduction")).thenReturn( 2000);
+        when(mockResultSet.getInt("yearOfProduction")).thenReturn(2000);
         when(mockResultSet.getString("description")).thenReturn("Description of the movie");
         when(mockResultSet.getDouble("rating")).thenReturn(5.5);
         when(mockResultSet.getDouble("price")).thenReturn(70.00);
         when(mockResultSet.getString("picturePath")).thenReturn("https:// link to the picture of the movie");
-
 
 
         Movie testMovie = movieRowMapper.mapRow(mockResultSet, 1);

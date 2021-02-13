@@ -22,7 +22,8 @@ public class JdbcGenreDaoTest {
 
     @BeforeAll
     public static void createGenres() {
-        /*log.info("Testing for getting genres is started");
+        /*log.info("Testing for getting genres is started"); todo
+
         testDataSource.init();
         Genre firstGenre = new Genre();
         firstGenre.setId(8);
@@ -38,7 +39,7 @@ public class JdbcGenreDaoTest {
     }
 
     @AfterAll
-    public static void removeMovies() {
+    public static void removeGenres() {
         /*testDataSource.cleanup();*/
     }
 
