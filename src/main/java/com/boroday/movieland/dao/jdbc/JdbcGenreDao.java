@@ -17,6 +17,7 @@ import java.util.List;
 public class JdbcGenreDao implements GenreDao {
     private static final String GET_ALL_GENRES = "select id, name from genres";
     private static final String CHANGE_FIRST_GENRE = "UPDATE genres SET name = 'Drama' WHERE id = 1"; //for test purpose only
+
     private static final GenreRowMapper GENRE_ROW_MAPPER = new GenreRowMapper();
 
     private final JdbcTemplate jdbcTemplate;
@@ -28,6 +29,7 @@ public class JdbcGenreDao implements GenreDao {
         return jdbcTemplate.query(GET_ALL_GENRES, GENRE_ROW_MAPPER);
     }
 
+    @Override
     public void changeTheFirst() { //for test purpose only
         log.info("Change the first genre");
         jdbcTemplate.update(CHANGE_FIRST_GENRE);

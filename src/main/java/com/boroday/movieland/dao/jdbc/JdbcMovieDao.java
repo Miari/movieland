@@ -27,7 +27,7 @@ public class JdbcMovieDao implements MovieDao {
 
     @Override
     public List<Movie> getAll(String rating, String price) {
-        log.info("Getting all movies from DB");
+        log.info("Getting all movies from DB. Price parameter = " + price + "; Rating parameter = " + rating);
         if (rating == null && price == null) {
             return jdbcTemplate.query(GET_ALL_MOVIES, MOVIE_ROW_MAPPER);
         } else if (price == null && rating.equals("desc")) {

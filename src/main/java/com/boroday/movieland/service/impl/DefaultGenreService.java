@@ -18,6 +18,7 @@ public class DefaultGenreService implements GenreService {
         return genreDao.getAll();
     }
 
+    @Override
     public void changeTheFirst() {//for test purpose only
         genreDao.changeTheFirst();
     }
