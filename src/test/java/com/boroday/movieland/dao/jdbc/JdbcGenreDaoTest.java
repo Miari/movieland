@@ -45,8 +45,8 @@ public class JdbcGenreDaoTest {
 
     @Test
     public void testGetAll() {
-        //to remove
-        testDataSource.init();
+
+        testDataSource.init(); //to remove todo
         Genre firstGenre = new Genre();
         firstGenre.setId(8);
         firstGenre.setName("фантастика");
@@ -72,6 +72,6 @@ public class JdbcGenreDaoTest {
             assertTrue(genres.contains(expectedGenre));
         }
 
-        testDataSource.cleanup();
+        testDataSource.cleanup(); //to remove todo
     }
 }

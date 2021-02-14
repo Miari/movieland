@@ -23,7 +23,7 @@ public class GenreController {
         return genreList;
     }
 
-    @GetMapping("/genres/change")
+    @GetMapping("/genres/change") //for test purposes only
     public void changeGenre() {
         log.info("Change genre request");
         genreService.changeTheFirst();

@@ -61,8 +61,8 @@ public class JdbcMovieDaoTest {
 
     @Test
     public void testGetAll() {
-        //to remove
-        testDataSource.init();
+
+        testDataSource.init();//to remove todo
         Movie firstMovie = new Movie();
         firstMovie.setId(2);
         firstMovie.setNameRu("Зеленая миля");
@@ -104,14 +104,12 @@ public class JdbcMovieDaoTest {
             assertTrue(movies.contains(expectedMovie));
         }
 
-        testDataSource.cleanup();
+        testDataSource.cleanup();//to remove todo
     }
 
     @Test
     public void testGetAllSortingByRating() {
-        //to remove
-        testDataSource.init();
-        //end
+        testDataSource.init(); //to remove todo
 
         log.info("GetAll order by rating test is started");
         //prepare
@@ -126,14 +124,12 @@ public class JdbcMovieDaoTest {
         assertThat(movies.get(2).getId(), anyOf(is(4L), is(13L)));
         assertThat(movies.get(3).getId(), anyOf(is(4L), is(13L)));
 
-        testDataSource.cleanup();
+        testDataSource.cleanup(); //to remove todo
     }
 
     @Test
     public void testGetAllSortingByPriceAsc() {
-        //to remove
-        testDataSource.init();
-        //end
+        testDataSource.init(); //to remove todo
 
         log.info("GetAll sorting by price asc test is started");
         //prepare
@@ -147,14 +143,13 @@ public class JdbcMovieDaoTest {
         assertEquals(movies.get(1).getId(), 20L);
         assertEquals(movies.get(2).getId(), 8L);
 
-        testDataSource.cleanup();
+        testDataSource.cleanup(); //to remove todo
     }
 
     @Test
     public void testGetAllSortingByPriceDesc() {
-        //to remove
-        testDataSource.init();
-        //end
+        testDataSource.init(); //to remove todo
+
 
         log.info("GetAll sorting by price desc test is started");
         //prepare
@@ -168,7 +163,7 @@ public class JdbcMovieDaoTest {
         assertEquals(movies.get(1).getId(), 17L);
         assertEquals(movies.get(2).getId(), 9L);
 
-        testDataSource.cleanup();
+        testDataSource.cleanup(); //to remove todo
     }
 }
 
