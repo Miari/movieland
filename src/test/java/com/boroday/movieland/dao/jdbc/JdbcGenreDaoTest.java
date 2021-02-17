@@ -22,7 +22,7 @@ public class JdbcGenreDaoTest {
 
     @BeforeAll
     public static void createGenres() {
-        log.info("Testing for getting genres is started"); //todo
+        log.info("Testing for getting genres is started");
 
         testDataSource.init();
         Genre firstGenre = new Genre();
@@ -45,21 +45,6 @@ public class JdbcGenreDaoTest {
 
     @Test
     public void testGetAll() {
-
-        /*testDataSource.init(); //to remove todo
-        Genre firstGenre = new Genre();
-        firstGenre.setId(8);
-        firstGenre.setName("фантастика");
-
-        Genre secondGenre = new Genre();
-        secondGenre.setId(13);
-        secondGenre.setName("мультфильм");
-
-        expectedGenres = new LinkedList<>();
-        expectedGenres.add(firstGenre);
-        expectedGenres.add(secondGenre);*/
-        //end
-
         //prepare
         GenreDao genreDao = new JdbcGenreDao(jdbcTemplate);
 
@@ -71,7 +56,5 @@ public class JdbcGenreDaoTest {
         for (Genre expectedGenre : expectedGenres) {
             assertTrue(genres.contains(expectedGenre));
         }
-
-        //testDataSource.cleanup(); //to remove todo
     }
 }
