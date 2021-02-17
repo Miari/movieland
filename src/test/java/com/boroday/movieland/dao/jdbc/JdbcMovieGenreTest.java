@@ -21,18 +21,17 @@ public class JdbcMovieGenreTest {
 
     @BeforeAll
     public static void createGenres() {
-       // testDataSource.init();
+       testDataSource.init();
     }
 
     @AfterAll
     public static void removeGenres() {
-        //testDataSource.cleanup();
+        testDataSource.cleanup();
     }
 
     @Test
     public void testGetMovieByGenre() {
         //prepare
-        testDataSource.init(); //to remove todo
         MovieGenreDao movieGenreDao = new JdbcMovieGenreDao(jdbcTemplate);
 
         //when
@@ -43,7 +42,5 @@ public class JdbcMovieGenreTest {
         assertEquals(21, movies.get(0).getId());
         assertEquals(24, movies.get(1).getId());
         assertEquals(25, movies.get(2).getId());
-
-        testDataSource.cleanup(); //to remove todo
     }
 }
